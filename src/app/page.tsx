@@ -3,7 +3,7 @@ import { redirect } from "next/navigation"
 function Home() {
     redirect("/landing")
 
-    return null
+    return <div></div>
 }
 
 export default Home
