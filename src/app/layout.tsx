@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     title: "NNS demo web",
     description: "A demo web for NNS web-based eco-system",
     keywords: "NNS, demo, web, NNS web, NNS demo",
+    other: { "google-site-verification": "3GEl3qy1LhifE0vdcezy4Q-6lTTxITU6uPNeVjxRMdI" },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
