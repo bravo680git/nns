@@ -1,11 +1,13 @@
 "use client"
 
+import Card from "../components/Card"
 import Revealer from "../components/Revealer"
 
 function Button({ children = "Work with us", ...props }) {
     return (
         <button
-            className="whitespace-nowrap rounded-full border border-solid border-black px-6 py-4 text-xl"
+            className="cursor-pointer whitespace-nowrap rounded-full border border-solid border-black px-5 py-3
+                text-xl transition-all duration-500 hover:bg-black hover:text-white"
             {...props}
         >
             {children}
@@ -29,7 +31,7 @@ function LandingPage() {
                 </div>
                 <div className="grid grow grid-cols-4 gap-8 lg:grid-cols-2 md:gap-4">
                     {[...Array(4)].map((_, i) => (
-                        <div key={i} className="bg-slate-200"></div>
+                        <Card key={i} hover className="bg-slate-200" desc="Image description"></Card>
                     ))}
                 </div>
             </Revealer>
@@ -102,7 +104,7 @@ function LandingPage() {
                                 </p>
                             </div>
                         </Revealer>
-                        <Revealer className="flex items-start gap-4 pl-6">
+                        <Revealer className="flex items-start gap-8 pl-6">
                             <span className="text-6xl md:text-4xl">01</span>
                             <div>
                                 <span className="text-4xl md:text-3xl">Background</span>
@@ -122,7 +124,13 @@ function LandingPage() {
                 <div className="w-full pt-24">
                     <div className="grid h-[600px] w-full grid-cols-3 gap-5 px-8 lg:h-[400px] lg:px-5 md:h-fit md:grid-cols-1">
                         {[...Array(3)].map((_, i) => (
-                            <Revealer type="zoomOut" key={i} className="bg-slate-200 md:h-[400px]"></Revealer>
+                            <Revealer type="zoomOut" key={i}>
+                                <Card
+                                    hover
+                                    desc="Image description"
+                                    className="h-full w-full bg-slate-200 md:h-[400px]"
+                                ></Card>
+                            </Revealer>
                         ))}
                     </div>
                     <div className="mt-24">
@@ -148,7 +156,7 @@ function LandingPage() {
                             </p>
                         </div>
                     </Revealer>
-                    <Revealer className="flex items-start gap-4 pl-6 lg:w-1/2 md:w-full">
+                    <Revealer className="flex items-start gap-8 pl-6 lg:w-1/2 md:w-full">
                         <span className="text-6xl md:text-4xl">01</span>
                         <div>
                             <span className="text-4xl md:text-3xl">Background</span>
@@ -171,7 +179,11 @@ function LandingPage() {
             </div>
 
             <Revealer type="faded" id="section-5" className="lg:px-5">
-                <div className="mx-auto mt-8 aspect-video w-2/3 bg-slate-200 lg:w-full"></div>
+                <Card
+                    hover
+                    desc="Image description"
+                    className="mx-auto mt-8 aspect-video w-2/3 bg-slate-200 lg:w-full"
+                ></Card>
                 <div className="mx-auto mt-5 h-10 w-10 bg-slate-200"></div>
             </Revealer>
 
@@ -192,7 +204,7 @@ function LandingPage() {
                             </p>
                         </div>
                     </Revealer>
-                    <Revealer className="flex items-start gap-4 pl-6">
+                    <Revealer className="flex items-start gap-8 pl-6">
                         <span className="text-6xl md:text-4xl">01</span>
                         <div>
                             <span className="text-4xl md:text-3xl">Solution</span>
@@ -211,8 +223,8 @@ function LandingPage() {
 
             <Revealer direction="down" id="section-7" className="min-h-screen py-16">
                 <div className="mx-auto flex w-3/4 items-center justify-around gap-16 lg:w-full lg:flex-col lg:px-5">
-                    <div className="aspect-[3/5] h-[75vh] bg-slate-200"></div>
-                    <div className="aspect-square h-[50vh] bg-slate-300"></div>
+                    <Card hover desc="Image description" className="aspect-[3/5] h-[75vh] bg-slate-200"></Card>
+                    <Card hover desc="Image description" className="aspect-square h-[50vh] bg-slate-300"></Card>
                 </div>
                 <div className="mx-auto mt-10 h-10 w-10 bg-slate-200"></div>
             </Revealer>
@@ -243,11 +255,16 @@ function LandingPage() {
                     {[...Array(6)].map((_, i) => (
                         <div
                             key={i}
-                            className="flex justify-center gap-2 
-                                rounded-full border border-solid border-black px-16 py-6 md:w-full md:py-4"
+                            className="group flex cursor-pointer justify-center gap-2 overflow-hidden rounded-full border
+                                border-solid border-black px-16 py-6 transition-all duration-1000 hover:bg-black hover:text-white md:w-full
+                                md:py-4"
                         >
-                            <span>Brand identity</span>
-                            <span>&rarr;</span>
+                            <span className="transition-all duration-500 group-hover:translate-x-[200%]">
+                                Brand identity
+                            </span>
+                            <span className="transition-all group-hover:translate-x-[200%] group-hover:font-bold">
+                                &rarr;
+                            </span>
                         </div>
                     ))}
                 </Revealer>
@@ -264,7 +281,7 @@ function LandingPage() {
                             key={i}
                             className="flex min-w-[300px] max-w-[440px] flex-col gap-2"
                         >
-                            <div className="aspect-square w-full bg-slate-200"></div>
+                            <div className="aspect-square w-full cursor-pointer bg-slate-200  hover:animate-pulse"></div>
                             <span>Press--Jan 03, 2023</span>
                             <a href="#" className="text-white underline active:text-white">
                                 Lorem ipsum dolor sit amet.
@@ -284,7 +301,8 @@ function LandingPage() {
                         <Revealer
                             direction={i % 2 ? "up" : "down"}
                             key={i}
-                            className="h-20 bg-slate-200 md:h-40"
+                            className="h-20 cursor-pointer bg-slate-200 shadow-black transition-all 
+                            duration-500 hover:rounded-lg hover:shadow-xl md:h-40"
                         ></Revealer>
                     ))}
                 </div>
