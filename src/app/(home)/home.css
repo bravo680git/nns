@@ -1,0 +1,74 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    margin: auto;
+    overflow: hidden;
+    background: linear-gradient(
+        -68deg,
+        #ccf2ff33 0%,
+        #b3ecff33 10%,
+        #f0f4f533 25%,
+        #80dfff33 45%,
+        #f3f6f733 60%,
+        #4dd2ff33 75%,
+        #f5f8f933 85%,
+        #1ac6ff33 100%
+    );
+}
+
+.wrapper::before,
+.wrapper::after,
+.circle,
+.circle::after,
+.circle::before {
+    position: absolute;
+    content: "";
+    width: 40vw;
+    height: 100vh;
+    border-radius: 100%;
+    z-index: -1;
+    filter: blur(100px);
+    opacity: 0.8;
+}
+
+.wrapper::before {
+    background: #ffa64d66;
+    top: 5%;
+    right: -5%;
+}
+
+.wrapper::after {
+    background: #7e756da1;
+    left: -100px;
+    bottom: 3%;
+}
+
+.circle::before {
+    background: #ff9933a1;
+    left: -40%;
+    top: -120%;
+}
+
+.circle {
+    background: #ff9933a1;
+    top: 48%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.circle::after {
+    background: #ff9933a1;
+    right: -50%;
+    bottom: -160%;
+}

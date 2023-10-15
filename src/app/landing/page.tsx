@@ -1,6 +1,6 @@
 "use client"
 
-import Card from "../components/Card"
+import Card from "./components/Card"
 import Revealer from "../components/Revealer"
 
 function Button({ children = "Work with us", ...props }) {

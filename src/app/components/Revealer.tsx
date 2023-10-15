@@ -1,3 +1,5 @@
+"use client"
+
 import { HTMLProps } from "react"
 import { useEffect } from "react"
 import { animated, useInView, useSpring } from "@react-spring/web"
@@ -36,7 +38,7 @@ function Revealer({ children, style, direction = "left", type = "slide", ...prop
         if (inView) {
             api.start(() => ({
                 ...(animation[type] as any),
-                config: { duration: 1000 },
+                config: { duration: 600 },
             }))
         } else {
             api.stop()
