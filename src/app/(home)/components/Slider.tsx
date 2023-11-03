@@ -1,10 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import { useState, useEffect } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import Button from "./Button"
+import Link from "next/link"
 
 type Props = {
-    items: any[]
+    items: {
+        image: string
+        url: string
+    }[]
 }
 
 function Slider({ items }: Props) {
@@ -37,14 +42,15 @@ function Slider({ items }: Props) {
                     className="flex w-fit gap-5 transition-all duration-700"
                     style={{ transform: `translateX(-${translateX}px)` }}
                 >
-                    {items.map((_, i) => (
-                        <div
+                    {items.map((item, i) => (
+                        <Link
+                            href={item.url}
                             key={i}
                             className="flex h-[300px] w-[400px] items-center justify-center rounded-2xl bg-black bg-opacity-60
                                     p-4 text-center"
                         >
-                            {i}
-                        </div>
+                            <img src={item.image} alt="img" className="w-full" />
+                        </Link>
                     ))}
                 </div>
             </div>

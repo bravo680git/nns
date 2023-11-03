@@ -9,7 +9,13 @@ import Button from "./Button"
 import { RiMenu2Fill } from "react-icons/ri"
 import { IoClose } from "react-icons/io5"
 
-function Header() {
+type Props = {
+    labels: string[]
+}
+
+const urls = ["home", "how", "about", "products", "reviews", "contact"]
+
+function Header({ labels }: Props) {
     const [isStick, setIsStick] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -55,24 +61,14 @@ function Header() {
                 >
                     <div className={cl("h-10 w-24 bg-slate-200 lg:mr-[100px] md:mr-0", { hidden: isStick })}></div>
                     <ul className={cl("flex gap-4 font-bold lg:mt-5", { "flex-col lg:mt-0": isStick })}>
-                        <Link className="underline-offset-4 hover:underline" href={"#home"}>
-                            Home
-                        </Link>
-                        <Link className="underline-offset-4 hover:underline" href={"#how-it-work"}>
-                            How it work
-                        </Link>
-                        <Link className="underline-offset-4 hover:underline" href={"#about"}>
-                            About us
-                        </Link>
-                        <Link className="underline-offset-4 hover:underline" href={"#products"}>
-                            Our products
-                        </Link>
-                        <Link className="underline-offset-4 hover:underline" href={"#reviews"}>
-                            Client thinking
-                        </Link>
+                        {urls.slice(0, 4).map((url, index) => (
+                            <Link key={index} className="underline-offset-4 hover:underline" href={url}>
+                                {labels[index]}
+                            </Link>
+                        ))}
                     </ul>
-                    <Link href="#contact" className="">
-                        <Button>Contact us</Button>
+                    <Link href={urls[5]} className="">
+                        <Button>{labels[5]}</Button>
                     </Link>
                 </animated.header>
             )}

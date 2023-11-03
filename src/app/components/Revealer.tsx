@@ -38,7 +38,7 @@ function Revealer({ children, style, direction = "left", type = "slide", ...prop
         if (inView) {
             api.start(() => ({
                 ...(animation[type] as any),
-                config: { duration: 600 },
+                config: { duration: 400 },
             }))
         } else {
             api.stop()
