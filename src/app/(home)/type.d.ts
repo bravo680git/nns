@@ -51,4 +51,7 @@ export type PageData = [
         label: string
         url: string
     }>,
+    Category<{
+        logo: string
+    }>,
 ]

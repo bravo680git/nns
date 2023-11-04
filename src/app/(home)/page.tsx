@@ -19,6 +19,7 @@ const colors = {
 }
 const APP_KEY = "6543ae46a264495c71a6233d"
 const URL = process.env.BASE_URL + "/category?page_id=" + APP_KEY
+
 async function HomePage() {
     const res = await fetch(URL, {
         next: { tags: [APP_KEY] },
@@ -29,7 +30,8 @@ async function HomePage() {
     }
 
     const data = await res.json()
-    const pageData: PageData = data?.data?.categories ?? new Array(7).fill({})
+
+    const pageData: PageData = data?.data?.categories ?? new Array(8).fill({})
     const home = pageData[0].value?.[0] ?? {}
     const howItWork = pageData[1]
     const aboutUs = pageData[2].value?.[0] ?? {}
@@ -40,6 +42,7 @@ async function HomePage() {
     const footer = pageData[6].value ?? []
     const lenDiv3 = Math.round(footer.length / 3)
     const footerGroups = [footer.slice(0, lenDiv3), footer.slice(lenDiv3 + 1, 2 * lenDiv3), footer.slice(lenDiv3 + 1)]
+    const others = pageData[7] ?? {}
 
     return (
         <div
@@ -53,7 +56,7 @@ async function HomePage() {
                 className="mx-auto min-h-screen w-full max-w-[1280px] rounded-3xl
                     border-[10px] border-solid border-white px-16 py-5 md:border-0 md:px-5"
             >
-                <Header labels={pageData.map((item) => item.name)} />
+                <Header labels={pageData.map((item) => item.name)} logo={others.value?.[0]?.logo} />
 
                 <section className="mt-[10%] flex min-h-[60vh] items-center gap-4 lg:flex-col">
                     <Revealer className="flex flex-col gap-6 text-6xl font-bold lg:text-5xl md:text-3xl">
@@ -93,7 +96,7 @@ async function HomePage() {
                                 className="flex h-[400px] flex-col items-center justify-around gap-4 
                                 rounded-2xl bg-white bg-opacity-40 p-4 text-center"
                             >
-                                <img className="w-36" src={item.image} alt="img-2" />
+                                <img className="max-h-full w-36 max-w-full" src={item.image} alt="img-2" />
                                 <h4 className="text-lg font-bold">{item.title}</h4>
                                 <p className="text-sm">{item.description}</p>
                             </Revealer>
@@ -103,7 +106,7 @@ async function HomePage() {
 
                 <section id="about" className="mt-40 flex items-center justify-around lg:flex-col-reverse lg:gap-8">
                     <Revealer>
-                        <img className="w-[300px]" src={aboutUs.image} alt="img-3" width={300} />
+                        <img className="max-h-full w-[300px] max-w-full" src={aboutUs.image} alt="img-3" width={300} />
                     </Revealer>
                     <Revealer direction="right" className="flex max-w-[500px] flex-col gap-8">
                         <h2 className="text-center text-2xl font-bold">{aboutUsTitle}</h2>
@@ -156,7 +159,7 @@ async function HomePage() {
                                             </i>
                                         </Link>
                                     </div>
-                                    <img src={item.image} alt="img" className="w-full" />
+                                    <img src={item.image} alt="img" className="max-h-full max-w-full" />
                                 </div>
                             ))}
                         </div>
@@ -183,14 +186,14 @@ async function HomePage() {
                     <div className="flex items-center gap-5 lg:flex-col">
                         <Revealer className="flex max-w-[400px] flex-col gap-5 lg:items-center">
                             <div className="h-[200px] w-3/4">
-                                <img src={contact.value[0]?.coverImage} alt="img" className="w-full" />
+                                <img src={contact.value[0]?.coverImage} alt="img" className="max-h-full max-w-full" />
                             </div>
                             <p className="lg:text-center">{contact.value[0]?.description}</p>
                             <div className="flex gap-4">
                                 {contact.value?.map((item, i) => (
                                     <Link key={i} href={item.url}>
                                         <div className="h-10 w-1 overflow-hidden rounded-sm">
-                                            <img src={item.channelLogo} alt="logo" className="w-full" />
+                                            <img src={item.channelLogo} alt="logo" className="max-h-full max-w-full" />
                                         </div>
                                     </Link>
                                 ))}

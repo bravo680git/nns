@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { useState, useEffect } from "react"
@@ -11,11 +12,12 @@ import { IoClose } from "react-icons/io5"
 
 type Props = {
     labels: string[]
+    logo: string
 }
 
-const urls = ["home", "how", "about", "products", "reviews", "contact"]
+const urls = ["#home", "#how-it-work", "#about", "#products", "#reviews", "#contact"]
 
-function Header({ labels }: Props) {
+function Header({ labels, logo }: Props) {
     const [isStick, setIsStick] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -59,7 +61,9 @@ function Header({ labels }: Props) {
                     })}
                     style={{ ...spring }}
                 >
-                    <div className={cl("h-10 w-24 bg-slate-200 lg:mr-[100px] md:mr-0", { hidden: isStick })}></div>
+                    <div className={cl("h-10 w-24 lg:mr-[100px] md:mr-0", { hidden: isStick })}>
+                        <img src={logo} alt="logo" className="max-h-full max-w-full" />
+                    </div>
                     <ul className={cl("flex gap-4 font-bold lg:mt-5", { "flex-col lg:mt-0": isStick })}>
                         {urls.slice(0, 4).map((url, index) => (
                             <Link key={index} className="underline-offset-4 hover:underline" href={url}>
