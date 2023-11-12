@@ -23,12 +23,12 @@ function Revealer({ children, style, direction = "left", type = "slide", ...prop
             to: { opacity: 1 },
         },
         zoomIn: {
-            from: { scale: 0.3 },
-            to: { scale: 1 },
+            from: { scale: 0.3, opacity: 0 },
+            to: { scale: 1, opacity: 1 },
         },
         zoomOut: {
-            from: { scale: 1.5 },
-            to: { scale: 1 },
+            from: { scale: 1.5, opacity: 0 },
+            to: { scale: 1, opacity: 1 },
         },
     }
     const [ref, inView] = useInView()
