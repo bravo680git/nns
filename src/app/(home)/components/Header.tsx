@@ -27,6 +27,7 @@ function Header({ labels, logo }: Props) {
         scale: active ? 1 : 0.2,
         transformOrigin: "bottom right",
         opacity: active ? 1 : 0.6,
+        zIndex: 10000,
         config: {
             duration: 100,
         },
@@ -52,46 +53,58 @@ function Header({ labels, logo }: Props) {
 
     return (
         <>
-            {(isOpen || !isStick) && (
-                <animated.header
-                    className={cl("flex items-center justify-between py-6 transition-all", "lg:flex-wrap", {
-                        "fixed bottom-[100px] right-10 flex-col gap-6 rounded-xl bg-white bg-opacity-70 px-4 shadow-lg":
-                            isStick,
-                        "md:hidden": !isOpen,
-                    })}
-                    style={{ ...spring }}
-                >
-                    <div className={cl("h-10 w-24 lg:mr-[100px] md:mr-0", { hidden: isStick })}>
-                        <img src={logo} alt="logo" className="max-h-full max-w-full" />
-                    </div>
-                    <ul className={cl("flex gap-4 font-bold lg:mt-5", { "flex-col lg:mt-0": isStick })}>
-                        {urls.slice(0, 4).map((url, index) => (
-                            <Link key={index} className="underline-offset-4 hover:underline" href={url}>
-                                {labels[index]}
-                            </Link>
-                        ))}
-                    </ul>
-                    <Link href={urls[5]} className="">
-                        <Button>{labels[5]}</Button>
-                    </Link>
-                </animated.header>
-            )}
-            {isStick && (
-                <Button
-                    rounded
-                    type="secondary"
-                    className="fixed bottom-10 right-10 z-10 text-xl"
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        setIsOpen(!isOpen)
-                    }}
-                >
-                    {!isOpen ? <RiMenu2Fill /> : <IoClose />}
-                </Button>
-            )}
-            <div className="hidden md:block">
-                <div className="h-10 w-32 bg-slate-200"></div>
+            <div className={cl("flex items-center justify-between py-6 transition-all", "lg:flex-wrap", {})}>
+                <div className={cl("h-10 w-24 lg:mr-[100px] md:mr-0")}>
+                    <img src={logo} alt="logo" className="max-h-full max-w-full" />
+                </div>
+                <ul className={cl("flex gap-4 font-bold lg:mt-5")}>
+                    {urls.slice(0, 4).map((url, index) => (
+                        <Link key={index} className="underline-offset-4 hover:underline" href={url}>
+                            {labels[index]}
+                        </Link>
+                    ))}
+                </ul>
+                <Link href={urls[5]} className="">
+                    <Button>{labels[5]}</Button>
+                </Link>
             </div>
+            {isStick && (
+                <>
+                    <Button
+                        rounded
+                        type="secondary"
+                        className="fixed bottom-10 right-10 z-10 text-xl"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setIsOpen(!isOpen)
+                        }}
+                    >
+                        {!isOpen ? <RiMenu2Fill /> : <IoClose />}
+                    </Button>
+
+                    {isOpen && (
+                        <animated.div
+                            className="fixed bottom-[100px] right-10 flex flex-col 
+                                gap-6 rounded-xl bg-white bg-opacity-70 px-4 py-6 shadow-lg"
+                            style={spring}
+                        >
+                            <div className={cl("hidden h-10 w-24 lg:mr-[100px] md:mr-0")}>
+                                <img src={logo} alt="logo" className="max-h-full max-w-full" />
+                            </div>
+                            <ul className={cl("flex flex-col gap-4 font-bold lg:mt-5")}>
+                                {urls.slice(0, 4).map((url, index) => (
+                                    <Link key={index} className="underline-offset-4 hover:underline" href={url}>
+                                        {labels[index]}
+                                    </Link>
+                                ))}
+                            </ul>
+                            <Link href={urls[5]}>
+                                <Button>{labels[5]}</Button>
+                            </Link>
+                        </animated.div>
+                    )}
+                </>
+            )}
         </>
     )
 }

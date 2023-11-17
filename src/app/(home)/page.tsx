@@ -40,7 +40,7 @@ async function HomePage() {
     const contact = pageData[5]
     const footer = pageData[6].value ?? []
     const lenDiv3 = Math.round(footer.length / 3)
-    const footerGroups = [footer.slice(0, lenDiv3), footer.slice(lenDiv3 + 1, 2 * lenDiv3), footer.slice(lenDiv3 + 1)]
+    const footerGroups = [footer.slice(0, lenDiv3), footer.slice(lenDiv3, 2 * lenDiv3), footer.slice(2 * lenDiv3)]
     const others = pageData[7] ?? {}
 
     return (
@@ -100,7 +100,7 @@ async function HomePage() {
                                 key={i}
                                 className="flex h-[400px] flex-col items-center justify-around gap-4 
                                 rounded-2xl bg-white bg-opacity-40 p-4 text-center"
-                                data-aos={i % 2 ? "zoom-out-down" : "zoom-in-down"}
+                                data-aos={"zoom-in-up"}
                             >
                                 <img className="max-h-full w-36 max-w-full" src={item.image} alt="img-2" />
                                 <h4 className="text-lg font-bold">{item.title}</h4>
@@ -194,24 +194,26 @@ async function HomePage() {
                 </section>
 
                 <footer id="contact" className="mt-32">
-                    <div className="flex items-center gap-5 lg:flex-col" data-aos="fade-down">
-                        <div className="flex max-w-[400px] flex-col gap-5 lg:items-center">
-                            <div className="h-[200px] w-3/4">
-                                <img src={contact.value[0]?.coverImage} alt="img" className="max-h-full max-w-full" />
+                    <div className="flex items-center gap-5 lg:flex-col" data-aos="fade-right">
+                        <div className="flex max-w-[600px] flex-col justify-center lg:items-center">
+                            <div className="">
+                                <img src={contact.value[0]?.coverImage} alt="img" className="max-w-[300px]" />
                             </div>
-                            <p className="lg:text-center">{contact.value[0]?.description}</p>
-                            <div className="flex gap-4">
+                            <p className="mb-2 mt-5 text-center font-bold lg:text-center">
+                                {contact.value[0]?.description}
+                            </p>
+                            <div className="flex justify-center gap-4">
                                 {contact.value?.map((item, i) => (
                                     <Link key={i} href={item.url}>
-                                        <div className="h-10 w-1 overflow-hidden rounded-sm">
-                                            <img src={item.channelLogo} alt="logo" className="max-h-full max-w-full" />
+                                        <div className="h-10 w-10 overflow-hidden rounded-sm">
+                                            <img src={item.logoIcon} alt="logo" className="max-h-full max-w-full" />
                                         </div>
                                     </Link>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="flex grow flex-wrap justify-around lg:w-full md:gap-4">
+                        <div className="flex grow flex-wrap justify-around lg:w-full md:gap-4" data-aos="fade-left">
                             {footerGroups.map((group, i) => (
                                 <div key={i} className="flex flex-col gap-4 md:items-center">
                                     {group.map((item, i) => (

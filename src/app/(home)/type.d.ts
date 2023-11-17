@@ -44,7 +44,7 @@ export type PageData = [
     Category<{
         coverImage: string
         description: string
-        channelLogo: string
+        logoIcon: string
         url: string
     }>,
     Category<{

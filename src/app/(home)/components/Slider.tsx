@@ -49,7 +49,7 @@ function Slider({ items }: Props) {
                             className="flex h-[300px] w-[400px] items-center justify-center rounded-2xl bg-black bg-opacity-60
                                     p-4 text-center"
                         >
-                            <img src={item.image} alt="img" className="w-full" />
+                            <img src={item.image} alt="img" className="max-h-full max-w-full" />
                         </Link>
                     ))}
                 </div>
